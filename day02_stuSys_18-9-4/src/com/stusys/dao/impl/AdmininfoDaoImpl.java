@@ -43,7 +43,7 @@ public class AdmininfoDaoImpl extends BaseDao implements AdmininfoDao {
     public AdminInfo selectByUsername(Connection conn, String username) throws SQLException {
         AdminInfo admin = null;
         String sql = "select * from admininfo where username=?";
-        ResultSet rs = super.executeQuery(conn, sql);
+        ResultSet rs = super.executeQuery(conn, sql, username);
         while (rs.next()) {
             admin = new AdminInfo();
             admin.setAdminid(rs.getInt("adminid"));

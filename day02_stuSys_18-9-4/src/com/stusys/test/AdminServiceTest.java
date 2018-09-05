@@ -31,6 +31,7 @@ public class AdminServiceTest {
         AdminInfo admin = new AdminInfo();
         admin.setUsername("ww");
         admin.setPassword("123456");
+        admin.setRealname("王五");
         int result = service.register(admin);
         if (result > 0) {
             System.out.println("register success!");

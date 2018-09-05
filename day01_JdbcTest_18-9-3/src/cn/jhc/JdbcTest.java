@@ -12,7 +12,7 @@ public class JdbcTest {
     @Test
     public void testSelect() {
         Connection conn = null;
-        String url = "jdbc:mysql://localhost:3306/stu";
+        String url = "jdbc:mysql://localhost:3306/studb";
         String uid = "root";
         String pwd = "123456";
         PreparedStatement pstms = null;
@@ -28,13 +28,13 @@ public class JdbcTest {
             // Java 与 Database 之间的桥梁
             conn = DriverManager.getConnection(url, uid, pwd);
             // 描述清楚要做的事情
-            String sql = "select * from admininfo order by id desc";
+            String sql = "select * from admininfo order by adminid desc";
             // 根据 conn 创建执行 sql 语句的工人
             pstms = conn.prepareStatement(sql);
             // 开始执行 sql 语句,得到相应的执行结果
             rs = pstms.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("adminid");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
                 String realname = rs.getString("realname");
@@ -58,7 +58,7 @@ public class JdbcTest {
     @Test
     public void testInsert(){
         Connection conn = null;
-        String url = "jdbc:mysql://localhost:3306/stu?seUnicode=ture&characterEncoding=UTF8";
+        String url = "jdbc:mysql://localhost:3306/studb?seUnicode=ture&characterEncoding=UTF8";
         String uid = "root";
         String pwd = "123456";
         PreparedStatement pstms = null;
@@ -107,7 +107,7 @@ public class JdbcTest {
     @Test
     public void testDelete(){
         Connection conn = null;
-        String url = "jdbc:mysql://localhost:3306/stu";
+        String url = "jdbc:mysql://localhost:3306/studb";
         String uid = "root";
         String pwd = "123456";
         PreparedStatement pstms = null;
@@ -123,10 +123,10 @@ public class JdbcTest {
             // Java 与 Database 之间的桥梁
             conn = DriverManager.getConnection(url, uid, pwd);
             // 描述清楚要做的事情
-            String sql = "delete from admininfo where id=?";
+            String sql = "delete from admininfo where adminid=?";
             // 根据 conn 创建执行 sql 语句的工人
             pstms = conn.prepareStatement(sql);
-            pstms.setInt(1, 10);
+            pstms.setInt(1, 3);
             // 开始执行 sql 语句,得到相应的执行结果
             int row = pstms.executeUpdate();
             if (row > 0) {
@@ -154,7 +154,7 @@ public class JdbcTest {
     @Test
     public void testUpdate(){
         Connection conn = null;
-        String url = "jdbc:mysql://localhost:3306/stu?seUnicode=ture&characterEncoding=UTF8";
+        String url = "jdbc:mysql://localhost:3306/studb?seUnicode=ture&characterEncoding=UTF8";
         String uid = "root";
         String pwd = "123456";
         PreparedStatement pstms = null;
@@ -170,10 +170,10 @@ public class JdbcTest {
             // Java 与 Database 之间的桥梁
             conn = DriverManager.getConnection(url, uid, pwd);
             // 描述清楚要做的事情
-            String sql = "update admininfo set password=?,realname=? where id=?";
+            String sql = "update admininfo set password=?,realname=? where adminid=?";
             // 根据 conn 创建执行 sql 语句的工人
             pstms = conn.prepareStatement(sql);
-            pstms.setString(1, "654321");
+            pstms.setString(1, "123456");
             pstms.setString(2, "张三");
             pstms.setInt(3, 1);
             // 开始执行 sql 语句,得到相应的执行结果
