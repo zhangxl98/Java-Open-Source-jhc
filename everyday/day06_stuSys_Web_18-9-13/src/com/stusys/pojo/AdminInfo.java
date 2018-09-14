@@ -14,6 +14,11 @@ public class AdminInfo {
     public AdminInfo() {
     }
 
+    public AdminInfo(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public AdminInfo(String username, String password, String realname) {
         this.username = username;
         this.password = password;

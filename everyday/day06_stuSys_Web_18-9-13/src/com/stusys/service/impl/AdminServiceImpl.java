@@ -49,6 +49,7 @@ public class AdminServiceImpl implements AdminService {
             result=-1;
         }else {
             result=mapper.insertAdmin(admin);
+            sqlSession.commit();
         }
         sqlSession.close();
         return result;
